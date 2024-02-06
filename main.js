@@ -32,19 +32,21 @@ renderer.render( scene, camera );
 //third number is
 //last number is how many sides
 const geometryTorus = new THREE.TorusGeometry( 13 , 1, 16, 100);
-const materialTorus = new THREE.MeshStandardMaterial( { color: 0xFF6347 } );
+const materialTorus = new THREE.MeshNormalMaterial( { color: 0xFF6347 } );
 
-const torus = new THREE.Mesh( geometryTorus, materialTorus );
-const torusSecond = new THREE.Mesh( geometryTorus, materialTorus );
-const torusThird = new THREE.Mesh( geometryTorus, materialTorus );
+const torusCount = 7;
+const tori = [];
 
-scene.add(torus)
-scene.add(torusSecond)
-scene.add(torusThird)
+for (let i = 0; i < torusCount; i++) {
+  const torus = new THREE.Mesh(geometryTorus, materialTorus);
+  scene.add(torus);
+  tori.push(torus);
+}
+
 
 //add sphere in donut
 const geometrySphere = new THREE.SphereGeometry( 10 );
-const materialSphere = new THREE.MeshStandardMaterial( { color: 0xFF6347 } );
+const materialSphere = new THREE.MeshNormalMaterial( { color: 0xFF6347 } );
 const sphere = new THREE.Mesh( geometrySphere, materialSphere );
 
 scene.add(sphere)
@@ -60,9 +62,9 @@ const ambientLight = new THREE.AmbientLight(0xFFFFFF, .01);
 scene.add(pointLight, ambientLight);
 
 //light visualizer
-const lightHelper = new THREE.PointLightHelper(pointLight);
-const gridHelper = new THREE.GridHelper(200,50);
-scene.add(lightHelper, gridHelper);
+//const lightHelper = new THREE.PointLightHelper(pointLight);
+//const gridHelper = new THREE.GridHelper(200,50);
+//scene.add(lightHelper, gridHelper);
 
 const controls = new OrbitControls( camera, renderer.domElement );
 
@@ -70,17 +72,15 @@ const controls = new OrbitControls( camera, renderer.domElement );
 function animate() {
     requestAnimationFrame( animate );
 
-    torus.rotation.x += 0.01;
-    torus.rotation.y += 0.005;
-    torus.rotation.z += 0.01;
+    tori.forEach((torus, index) => {
+        torus.rotation.x += 0.01 + index * 0.003;
+        torus.rotation.y += 0.005 + index * 0.005;
+        torus.rotation.z += 0.01 + index * 0.005;
+      });
 
-    torusSecond.rotation.x += 0.015;
-    torusSecond.rotation.y += 0.010;
-    torusSecond.rotation.z += 0.015;
-
-    torusThird.rotation.x += 0.013;
-    torusThird.rotation.y += 0.015;
-    torusThird.rotation.z += 0.013;
+      sphere.rotation.x += 0.01;
+      sphere.rotation.y += 0.005;
+      sphere.rotation.z += 0.01;
 
     controls.update();
 
