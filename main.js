@@ -8,8 +8,9 @@ import './style.css';
 import * as THREE from 'three';
 
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
-//Settigng the Scene
+//Setting the Scene
 const scene = new THREE.Scene();
 
 //first number is distance
@@ -25,6 +26,7 @@ renderer.setSize( window.innerWidth, window.innerHeight);
 camera.position.setZ(10);
 camera.position.setX(0);
 
+//renders the camera and scene
 renderer.render( scene, camera );
 
 //planet textures
@@ -77,6 +79,48 @@ const earth = createCelestialBody(
     null, // Pass null for normalMap to exclude it
     new THREE.Vector3(-20, -10, -2)
 );
+
+//controls keys WIP
+const keysPressed = { }
+//const keyDiplayQueue = new KeyDisplay();
+document.addEventListener('keydown', (event) => {
+  //keyDiplayQueue.down(event.key)
+  if (event.shiftKey){
+
+  } else {
+    keysPressed[event.key.toLowerCase()] = true
+  }
+}, false);
+document.addEventListener('keyup', (event) => {
+  keysPressed[event.key.toLowerCase()] = false
+}, false);
+
+// Load model with the GLTFLoader WIP
+const loader = new GLTFLoader();
+
+//Loads model rocket ship WIP
+loader.load( './resources/rocket_ship/scene.gltf', function ( gltf ) {
+  const rocketShip = gltf.scene;
+
+  // Set the scale of the model to make it smaller
+  rocketShip.scale.set(0.005, 0.005, 0.005);
+  
+  //set position
+  rocketShip.position.set(3, 0, 10);
+
+  // Add the scaled model to the scene
+  scene.add(rocketShip);
+
+  const gltfAnimations = gltf.animations;
+  const mixer = new THREE.AnimationMixer(rocketShip);
+  const animationsMap = new Map();
+
+
+}, undefined, function ( error ) {
+
+	console.error( error );
+
+} );
 
 //light to point at object like flashlight
 //first number is color, second parameter is intensity
