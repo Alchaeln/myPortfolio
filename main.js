@@ -80,47 +80,91 @@ const earth = createCelestialBody(
     new THREE.Vector3(-20, -10, -2)
 );
 
-//controls keys WIP
-const keysPressed = { }
-//const keyDiplayQueue = new KeyDisplay();
-document.addEventListener('keydown', (event) => {
-  //keyDiplayQueue.down(event.key)
-  if (event.shiftKey){
-
-  } else {
-    keysPressed[event.key.toLowerCase()] = true
-  }
-}, false);
-document.addEventListener('keyup', (event) => {
-  keysPressed[event.key.toLowerCase()] = false
-}, false);
-
-// Load model with the GLTFLoader WIP
 const loader = new GLTFLoader();
 
-//Loads model rocket ship WIP
-loader.load( './resources/rocket_ship/scene.gltf', function ( gltf ) {
+// Loads model rocket ship WIP
+loader.load('./resources/rocket_ship/scene.gltf', function (gltf) {
   const rocketShip = gltf.scene;
 
   // Set the scale of the model to make it smaller
   rocketShip.scale.set(0.005, 0.005, 0.005);
   
-  //set position
-  rocketShip.position.set(3, 0, 10);
+  // Set position
+  rocketShip.position.set(1, -0.5, 10.75);
 
   // Add the scaled model to the scene
   scene.add(rocketShip);
 
   const gltfAnimations = gltf.animations;
-  const mixer = new THREE.AnimationMixer(rocketShip);
-  const animationsMap = new Map();
+  const rocketShipMixer = new THREE.AnimationMixer(rocketShip);
+  const rocketShipAnimationsMap = new Map();
 
+  gltfAnimations.forEach((a) => {
+    rocketShipAnimationsMap.set(a.name, rocketShipMixer.clipAction(a));
+  });
 
-}, undefined, function ( error ) {
+}, undefined, function (error) {
+  console.error(error);
+});
 
-	console.error( error );
+let astronaut;
 
-} );
+// Loads model little astronaut WIP
+loader.load('./resources/little_astronaut/scene.gltf', function (gltf) {
+  astronaut = gltf.scene;
+
+  // Set the scale of the model to make it smaller
+  astronaut.scale.set(.115, .115, .115);
+  
+  // Set position
+  astronaut.position.set(-.2, -0.25, 9.75);
+
+  // Add the scaled model to the scene
+  scene.add(astronaut);
+
+  const gltfAnimations = gltf.animations;
+  const astronautMixer = new THREE.AnimationMixer(astronaut);
+  const astronautAnimationsMap = new Map();
+
+  gltfAnimations.forEach((a) => {
+    astronautAnimationsMap.set(a.name, astronautMixer.clipAction(a));
+  });
+
+  // Rest of your animation setup for astronaut...
+
+}, undefined, function (error) {
+  console.error(error);
+});
+
+let cosmos;
+
+// Loads model little astronaut WIP
+loader.load('./resources/need_some_space/scene.gltf', function (gltf) {
+  cosmos = gltf.scene;
+
+  // Set the scale of the model to make it smaller
+  cosmos.scale.set(600, 600, 600);
+  
+  // Set position
+  cosmos.position.set(1000, -650, 9.75);
+
+  // Add the scaled model to the scene
+  scene.add(cosmos);
+
+  const gltfAnimations = gltf.animations;
+  const cosmosvixer = new THREE.AnimationMixer(cosmos);
+  const cosmosAnimationsMap = new Map();
+
+  gltfAnimations.forEach((a) => {
+    cosmosAnimationsMap.set(a.name, astronautMixer.clipAction(a));
+  });
+
+  // Rest of your animation setup for astronaut...
+
+}, undefined, function (error) {
+  console.error(error);
+});
+
 
 //light to point at object like flashlight
 //first number is color, second parameter is intensity
@@ -136,7 +180,7 @@ scene.add(pointLight, ambientLight, pointLightSun);
 
 //light visualizer and grid
  //const lightHelper = new THREE.PointLightHelper(pointLightSun);
-// const gridHelper = new THREE.GridHelper(200,50);
+ //const gridHelper = new THREE.GridHelper(200,50);
  //scene.add(lightHelper, gridHelper);
 
 function addStar() {
@@ -178,6 +222,22 @@ scene.background = spaceTexture;
 scene.backgroundIntensity = .02;
 scene.backgroundBlurriness = 0;
 
+// Initial camera position
+const initialCameraPosition = new THREE.Vector3(0, 0, 10);
+
+// camera motion
+function moveCamera() {
+  const t = document.body.getBoundingClientRect().top;
+
+  // Adjust the camera position based on the scroll with an offset
+  camera.position.z = initialCameraPosition.z + t * -0.005;
+  camera.position.x = initialCameraPosition.x + t * -0.00025;
+  camera.rotation.y = initialCameraPosition.y + t * -0.00025;
+}
+
+document.body.onscroll = moveCamera;
+moveCamera();
+
 //Recursive function to animate the page
 function animate() {
     requestAnimationFrame( animate );
@@ -186,7 +246,12 @@ function animate() {
         rotateCelestialBody(body, config);
       });
 
+    // Rotate the astronaut model
+    astronaut.rotation.y += 0.0005;
+
     controls.update();
+
+    //console.log('Camera Position:', camera.position);
 
     renderer.render( scene, camera);
 }
