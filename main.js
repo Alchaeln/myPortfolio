@@ -10,6 +10,18 @@ import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
+import debounce from 'lodash/debounce';
+
+//Intorduced Lodash to introduce reloading the page due to the page leaving white space when resizing to bigger size
+const reloadPage = debounce(() => {
+  window.location.reload();
+}, 300); // Adjust the debounce delay as needed
+
+window.addEventListener('resize', () => {
+  reloadPage();
+});
+
+
 //Setting the Scene
 const scene = new THREE.Scene();
 
@@ -257,3 +269,4 @@ function animate() {
 }
 
 animate();
+
