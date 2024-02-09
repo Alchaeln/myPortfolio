@@ -79,6 +79,8 @@ canvas {
 @media only screen and (max-width: 767px) {
   header, section, blockquote, .left, .right {
     grid-column: span 12;
+    margin-left: 10px;
+    margin-right: 10px;
   }
 
   header {
@@ -107,7 +109,7 @@ canvas {
   }
 
   .left, .right {
-    grid-column: span 12;
+    grid-column: span 11;
   }
 
   /* Additional styles for smaller screens if needed */
