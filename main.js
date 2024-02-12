@@ -274,7 +274,9 @@ function animate() {
       });
 
     // Rotate the astronaut model
-    astronaut.rotation.y += 0.0005;
+    if (astronaut) {
+      astronaut.rotation.y += 0.0005;
+    }
 
     controls.update();
 
