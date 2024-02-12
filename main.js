@@ -12,14 +12,20 @@ import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
 import debounce from 'lodash/debounce';
 
-// Show loading screen until everything is loaded
-document.addEventListener('DOMContentLoaded', function () {
-  // Simulating a delay for demonstration purposes (you can remove this in your actual code)
+  // Simulate loading completion after a delay (you can remove this in your actual code)
   setTimeout(function () {
-    // Remove the loading screen
-    document.getElementById('loading-screen').style.display = 'none';
+    fadeOutLoadingScreen();
   }, 2000); // Adjust the delay as needed
-});
+
+  function fadeOutLoadingScreen() {
+    const loadingScreen = document.getElementById('loading-screen');
+    loadingScreen.style.opacity = 0; // Set opacity to 0 for a smooth fade-out effect
+
+    // Remove the loading screen after the fade-out transition is complete
+    setTimeout(function () {
+      loadingScreen.style.display = 'none';
+    }, 1000); // Adjust the delay to match the transition duration
+  }
 
 //Intorduced Lodash to introduce reloading the page due to the page leaving white space when resizing to bigger size
 const reloadPage = debounce(() => {

@@ -36,7 +36,7 @@ canvas {
 }
 
   header {
-    background: linear-gradient(to right, #25c7bfbd 0%, #6b14d6b0 100%);
+    background: linear-gradient(to right, #25c7bf 0%, #2e0264 100%);
     background-clip: text;
     color: transparent;
     grid-column: 2 / span 5;
@@ -89,7 +89,7 @@ canvas {
   }
 
   header {
-    background: linear-gradient(to right, #25c7bf 0%, #6c14d6 100%);
+    background: linear-gradient(to right, #25c7bf 0%, #2e0264 100%);
     background-clip: text;
     color: transparent;
     font-size: 2rem;
