@@ -35,52 +35,52 @@ canvas {
   height: 100%;
 }
 
-  header {
-    background: linear-gradient(to right, #4eccc6d3 0%, rgb(115, 0, 255) 100%);
-    background-clip: text;
-    color: transparent;
-    grid-column: 2 / span 11;
-    font-size: 2.5rem;
-    padding: 2rem;
-    margin-bottom: var(--spacing);
-  }
+header {
+  background: linear-gradient(to right, #4eccc6d3 0%, rgb(115, 0, 255) 100%);
+  background-clip: text;
+  color: transparent;
+  grid-column: 2 / span 11;
+  font-size: 2.5rem;
+  padding: 2rem;
+  margin-bottom: var(--spacing);
+}
 
-  section {
-    grid-column: 2 / 8;
-    padding: 1rem;
-    background: var(--dark-bg);
-    font-size: 1.25rem;
-    line-height: 1.5;
-    margin-bottom: var(--spacing);
-  }
+section {
+  grid-column: 2 / 8;
+  padding: 1rem;
+  background: var(--dark-bg);
+  font-size: 1.25rem;
+  line-height: 1.5;
+  margin-bottom: var(--spacing);
+}
 
-  blockquote {
-    margin: 0;
-    padding: 1rem;
-    background: rgba(15, 15, 15, 0.525); /* Adjust alpha for transparency */
-    font-size: 1.25rem;
-    grid-column: 11 ;
-    line-height: 1.5;
-    margin-bottom: var(--spacing);
-  }
+blockquote {
+  margin: 0;
+  padding: 1rem;
+  background: rgba(15, 15, 15, 0.525);
+  font-size: 1.25rem;
+  grid-column: 11;
+  line-height: 1.5;
+  margin-bottom: var(--spacing);
+}
 
-  blockquote ul li {
-    font-weight: normal;
-  }
+blockquote ul li {
+  font-weight: normal;
+}
 
-  .left {
-    grid-column: 2 / 6;
-  }
+.left {
+  grid-column: 2 / 6;
+}
 
-  .right {
-    grid-column: 6 / 12;
-  }
+.right {
+  grid-column: 6 / 12;
+}
 
-  body, header, section, blockquote {
-    border-radius: 50px;
-  }  
+body, header, section, blockquote {
+  border-radius: 50px;
+} 
 
-  /* Styles for screens with a maximum width of 767 pixels (commonly mobile devices) */
+/* Styles for screens with a maximum width of 767 pixels (mobile) */
 @media only screen and (max-width: 767px) {
   header, section, blockquote, .left, .right {
     grid-column: span 11;
