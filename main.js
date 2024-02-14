@@ -157,15 +157,13 @@ loader.load('./resources/little_astronaut/scene.gltf', function (gltf) {
     astronautAnimationsMap.set(a.name, astronautMixer.clipAction(a));
   });
 
-  // Rest of your animation setup for astronaut...
-
 }, undefined, function (error) {
   console.error(error);
 });
 
 let cosmos;
 
-// Loads model little astronaut WIP
+// Loads model Lot of stars
 loader.load('./resources/need_some_space/scene.gltf', function (gltf) {
   cosmos = gltf.scene;
 
@@ -186,7 +184,6 @@ loader.load('./resources/need_some_space/scene.gltf', function (gltf) {
     cosmosAnimationsMap.set(a.name, astronautMixer.clipAction(a));
   });
 
-  // Rest of your animation setup for astronaut...
 
 }, undefined, function (error) {
   console.error(error);

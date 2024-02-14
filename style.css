@@ -1,6 +1,6 @@
 @import url("https://use.typekit.net/jmk3xov.css");
 :root {
-  --dark-bg: rgba(15, 15, 15, 0.55);
+  --dark-bg: rgba(15, 15, 15, 0.525);
   --spacing: 350px;
 
   font-family: brandon-grotesque, sans-serif;
@@ -36,10 +36,10 @@ canvas {
 }
 
   header {
-    background: linear-gradient(to right, #3bd1ca 0%, #5504b8 100%);
+    background: linear-gradient(to right, #4eccc6d3 0%, rgb(115, 0, 255) 100%);
     background-clip: text;
     color: transparent;
-    grid-column: 2 / span 5;
+    grid-column: 2 / span 11;
     font-size: 2.5rem;
     padding: 2rem;
     margin-bottom: var(--spacing);
@@ -57,7 +57,7 @@ canvas {
   blockquote {
     margin: 0;
     padding: 1rem;
-    background: rgba(15, 15, 15, 0.15); /* Adjust alpha for transparency */
+    background: rgba(15, 15, 15, 0.525); /* Adjust alpha for transparency */
     font-size: 1.25rem;
     grid-column: 11 ;
     line-height: 1.5;
@@ -105,7 +105,7 @@ canvas {
   }
 
   blockquote {
-    background: rgba(15, 15, 15, 0.15);
+    background: rgba(15, 15, 15, 0.525);
     font-size: 1rem;
     line-height: 1.5;
     margin-bottom: var(--spacing);
