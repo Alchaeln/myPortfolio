@@ -242,7 +242,7 @@ function rotateCelestialBody(body, config) {
 
 
 //background textures and intensity
-const spaceTexture = new THREE.TextureLoader().load('images/space.jpg');
+const spaceTexture = new THREE.TextureLoader().load('./images/space.jpg');
 scene.background = spaceTexture;
 scene.backgroundIntensity = .02;
 scene.backgroundBlurriness = 0;
