@@ -135,7 +135,6 @@ scrollbar-width: none;  /* Firefox */
   body {
     padding: 10px;
     font-size: 14px;
-    min-height: 100vh;
   }
 
   canvas {
