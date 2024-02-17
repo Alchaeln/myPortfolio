@@ -25,14 +25,17 @@ import debounce from 'lodash/debounce';
     }, 1000); // Adjust the delay to match the transition duration
   }
 
-//Intorduced Lodash to introduce reloading the page due to the page leaving white space when resizing to bigger size
+// Introduced Lodash to introduce reloading the page due to the page leaving white space when resizing to a bigger size
 const reloadPage = debounce(() => {
   window.location.reload();
 }, 300); // Adjust the debounce delay as needed
 
-window.addEventListener('resize', () => {
-  reloadPage();
-});
+// Check if the screen width is greater than 768 pixels (adjust this threshold as needed)
+if (window.innerWidth > 768) {
+  window.addEventListener('resize', () => {
+    reloadPage();
+  });
+}
 
 
 //Setting the Scene
