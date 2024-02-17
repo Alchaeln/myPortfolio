@@ -58,16 +58,16 @@ camera.position.setX(0);
 renderer.render( scene, camera );
 
 //planet textures
-const normalTexture = new THREE.TextureLoader().load('images/normal.jpg');
+const normalTexture = new THREE.TextureLoader().load('./images/normal.jpg');
 
 //moon texture
-const moonTexture = new THREE.TextureLoader().load('images/moon.jpg');
+const moonTexture = new THREE.TextureLoader().load('./images/moon.jpg');
 
 //earth texture
-const earthTexture = new THREE.TextureLoader().load('images/earth.jpg');
+const earthTexture = new THREE.TextureLoader().load('./images/earth.jpg');
 
 //sun texture
-const sunTexture = new THREE.TextureLoader().load('images/sun.jpg');
+const sunTexture = new THREE.TextureLoader().load('./images/sun.jpg');
 
 // Function to create more celestial bodies
 function createCelestialBody(geometry, texture, normalMap, position = new THREE.Vector3(), size = 1) {
