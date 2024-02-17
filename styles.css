@@ -137,4 +137,8 @@ scrollbar-width: none;  /* Firefox */
     font-size: 14px;
     min-height: 100vh;
   }
+
+  canvas {
+    min-height: 100vh;
+  }
 }
