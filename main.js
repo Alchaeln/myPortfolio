@@ -1,9 +1,7 @@
-import './style.css'
+import './styles.css';
 import javascriptLogo from './javascript.svg'
 import viteLogo from '/vite.svg'
 import { setupCounter } from './counter.js'
-
-import './style.css';
 
 import * as THREE from 'three';
 
@@ -27,14 +25,17 @@ import debounce from 'lodash/debounce';
     }, 1000); // Adjust the delay to match the transition duration
   }
 
-//Intorduced Lodash to introduce reloading the page due to the page leaving white space when resizing to bigger size
+// Introduced Lodash to introduce reloading the page due to the page leaving white space when resizing to a bigger size
 const reloadPage = debounce(() => {
   window.location.reload();
 }, 300); // Adjust the debounce delay as needed
 
-window.addEventListener('resize', () => {
-  reloadPage();
-});
+// Check if the screen width is greater than 768 pixels (adjust this threshold as needed)
+if (window.innerWidth > 768) {
+  window.addEventListener('resize', () => {
+    reloadPage();
+  });
+}
 
 
 //Setting the Scene
@@ -57,16 +58,16 @@ camera.position.setX(0);
 renderer.render( scene, camera );
 
 //planet textures
-const normalTexture = new THREE.TextureLoader().load('images/normal.jpg');
+const normalTexture = new THREE.TextureLoader().load('./images/normal.jpg');
 
 //moon texture
-const moonTexture = new THREE.TextureLoader().load('images/moon.jpg');
+const moonTexture = new THREE.TextureLoader().load('./images/moon.jpg');
 
 //earth texture
-const earthTexture = new THREE.TextureLoader().load('images/earth.jpg');
+const earthTexture = new THREE.TextureLoader().load('./images/earth.jpg');
 
 //sun texture
-const sunTexture = new THREE.TextureLoader().load('images/sun.jpg');
+const sunTexture = new THREE.TextureLoader().load('./images/sun.jpg');
 
 // Function to create more celestial bodies
 function createCelestialBody(geometry, texture, normalMap, position = new THREE.Vector3(), size = 1) {
@@ -241,7 +242,7 @@ function rotateCelestialBody(body, config) {
 
 
 //background textures and intensity
-const spaceTexture = new THREE.TextureLoader().load('images/space.jpg');
+const spaceTexture = new THREE.TextureLoader().load('./images/space.jpg');
 scene.background = spaceTexture;
 scene.backgroundIntensity = .02;
 scene.backgroundBlurriness = 0;
